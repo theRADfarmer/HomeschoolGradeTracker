@@ -1,0 +1,99 @@
+.button-primary {
+    background-color: var(--forest-green);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    width: 300px;
+    margin: 15px;
+    font-size: 1rem;
+    transition: box-shadow 0.2s ease;
+}
+
+.button-secondary {
+    background-color: var(--steel-blue);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    width: 300px;
+    margin: 15px;
+    font-size: 1rem;
+    transition: box-shadow 0.2s ease;
+}
+
+.button-primary:hover, .button-secondary:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+    transform: scale(1.05);
+}
+
+.card {
+    background-color: var(--warm-stone);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin: 10px;
+    width: contain;
+}
+
+.circle-card {
+    background-color: var(--warm-stone);
+    padding: 1rem;
+    border-radius: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin: 10px;
+    min-width: 12rem;
+    min-height: 12rem;
+    max-width: 12rem;
+    max-height: 12rem;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    height: var(--navbar-height);
+    background-color: var(--forest-green);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.nav-links {
+    font-size: 1.2rem;
+    list-style: none;
+}
+
+.nav-links a:link, .nav-links a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.footer {
+    background-color: var(--graphite);
+    color: var(--warm-stone);
+}
+
+.footer a:link, .footer a:visited {
+    color: var(--warm-stone);
+    text-decoration: none;
+}

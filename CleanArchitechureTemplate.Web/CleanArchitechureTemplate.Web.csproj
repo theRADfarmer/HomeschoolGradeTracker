@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <BaseOutputPath>build\</BaseOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\lib\alpinejs\src\**" />
+    <Content Remove="wwwroot\lib\alpinejs\src\**" />
+    <EmbeddedResource Remove="wwwroot\lib\alpinejs\src\**" />
+    <None Remove="wwwroot\lib\alpinejs\src\**" />
+  </ItemGroup>
+
+</Project>

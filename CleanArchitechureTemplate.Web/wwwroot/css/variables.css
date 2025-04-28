@@ -1,0 +1,11 @@
+:root {
+    --forest-green: #2B5034;
+    --warm-stone: #DDD8CF;
+    --trans-warm-stone: rgba(221, 216, 207, .75);
+    --wheat: #E9D8A6;
+    --steel-blue: #4C9FE0;
+    --graphite: #3E3E3E;
+    --font-heading: 'Raleway', sans-serif;
+    --font-body: 'Lato', sans-serif;
+    --navbar-height: 80px;
+}

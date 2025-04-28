@@ -1,0 +1,28 @@
+/*Add layout-based CSS rules here*/
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
