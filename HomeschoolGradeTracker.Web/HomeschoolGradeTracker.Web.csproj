@@ -14,4 +14,22 @@
     <None Remove="wwwroot\lib\alpinejs\src\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Assignments\" />
+    <Folder Include="Pages\Subjects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HomeschoolGradeTracker.Infrastructure\HomeschoolGradeTracker.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
