@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Assignments\" />
-    <Folder Include="Subjects\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +29,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HomeschoolGradeTracker.Domain\HomeschoolGradeTracker.Domain.csproj" />
   </ItemGroup>
 
 </Project>

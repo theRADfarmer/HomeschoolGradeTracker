@@ -1,0 +1,14 @@
+﻿using HomeschoolGradeTracker.Domain.Entities;
+
+// ISubjectRepository defines the contract for data access related to subjects.
+// This abstraction allows the Application layer to remain decoupled from Infrastructure (EF Core, databases, etc).
+// Infrastructure will provide the actual implementation of this interface.
+
+namespace HomeschoolGradeTracker.Application.Interfaces
+{
+    public interface IRepository
+    {
+        Task<List<Subject>> GetAllAsync();
+        Task AddAsync(Subject subject);
+    }
+}

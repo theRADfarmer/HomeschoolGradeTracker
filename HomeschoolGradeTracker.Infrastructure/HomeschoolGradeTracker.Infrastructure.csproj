@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HomeschoolGradeTracker.Domain\HomeschoolGradeTracker.Domain.csproj" />
+	<ProjectReference Include="..\HomeschoolGradeTracker.Application\HomeschoolGradeTracker.Application.csproj" />
   </ItemGroup>
 
 </Project>
