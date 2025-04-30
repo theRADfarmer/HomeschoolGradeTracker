@@ -17,7 +17,7 @@ public class SubjectService_IntegrationTests
         var context = new ApplicationDbContext(options);
 
         // Seed with a subject to verify retrieval
-        context.Subjects.Add(new Subject { Name = "History" });
+        context.Subjects.Add(new Subject { Name = "History", Description = "Master Books World Geography" });
         context.SaveChanges();
 
         return context;
@@ -41,6 +41,7 @@ public class SubjectService_IntegrationTests
         // Assert: validate the result
         Assert.Single(subjects);
         Assert.Equal("History", subjects.First().Name);
+        Assert.Equal("Master Books World Geography", subjects.First().Description);
     }
 
     [Fact]
@@ -56,13 +57,14 @@ public class SubjectService_IntegrationTests
         await dbContext.SaveChangesAsync();
 
         // Act: call the method under test
-        var newSubject = new Subject { Name = "Geography" };
+        var newSubject = new Subject { Name = "Geography", Description = "Master Books World Geography" };
         await service.AddSubjectAsync(newSubject);
 
         // Assert: validate the result
         var subjects = await dbContext.Subjects.ToListAsync();
         Assert.Single(subjects);
         Assert.Equal("Geography", subjects.First().Name);
+        Assert.Equal("Master Books World Geography", subjects.First().Description);
     }
     [Fact]
     public async Task UpdateSubject_UpdatesInDb()
@@ -77,18 +79,20 @@ public class SubjectService_IntegrationTests
         await dbContext.SaveChangesAsync();
 
         // Add a subject to update
-        var subject = new Subject { Name = "Math" };
+        var subject = new Subject { Name = "Math", Description = "Math-U-See Level Alpha" };
         dbContext.Subjects.Add(subject);
         await dbContext.SaveChangesAsync();
 
         // Act: update the subject
         subject.Name = "Advanced Math";
+        subject.Description = "Math-U-See Pre-Calculus";
         await service.UpdateSubjectAsync(subject);
 
         // Assert: validate the result
         var updatedSubject = await dbContext.Subjects.FindAsync(subject.Id);
         Assert.NotNull(updatedSubject);
         Assert.Equal("Advanced Math", updatedSubject.Name);
+        Assert.Equal("Math-U-See Pre-Calculus", updatedSubject.Description);
     }
 
     [Fact]

@@ -31,6 +31,7 @@ namespace HomeschoolGradeTracker.Application.Services
         {
             var existing = await _subjectRepo.GetByIdAsync(updatedSubject.Id) ?? throw new KeyNotFoundException($"Subject with ID {updatedSubject.Id} not found.");
             existing.Name = updatedSubject.Name;
+            existing.Description = updatedSubject.Description;
 
             await _subjectRepo.UpdateAsync(existing);
         }
