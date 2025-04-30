@@ -8,13 +8,10 @@
 
   <ItemGroup>
     <Compile Remove="Dtos\**" />
-    <Compile Remove="Services\**" />
     <Compile Remove="UseCases\**" />
     <EmbeddedResource Remove="Dtos\**" />
-    <EmbeddedResource Remove="Services\**" />
     <EmbeddedResource Remove="UseCases\**" />
     <None Remove="Dtos\**" />
-    <None Remove="Services\**" />
     <None Remove="UseCases\**" />
   </ItemGroup>
 
