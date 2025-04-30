@@ -10,5 +10,8 @@ namespace HomeschoolGradeTracker.Application.Interfaces
     {
         Task<List<Subject>> GetAllAsync();
         Task AddAsync(Subject subject);
+        Task UpdateAsync(Subject subject);
+        Task DeleteAsync(Subject subject);
+        Task<Subject> GetByIdAsync(int id);
     }
 }

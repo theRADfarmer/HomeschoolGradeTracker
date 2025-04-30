@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using HomeschoolGradeTracker.Infrastructure.Persistence;
 using HomeschoolGradeTracker.Application.Interfaces;
 using HomeschoolGradeTracker.Infrastructure.Repositories;
-using HomeschoolGradeTracker.Application.Subjects;
+using HomeschoolGradeTracker.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

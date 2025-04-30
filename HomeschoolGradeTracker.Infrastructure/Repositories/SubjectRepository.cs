@@ -28,5 +28,22 @@ namespace HomeschoolGradeTracker.Infrastructure.Repositories
             _db.Subjects.Add(subject);
             return _db.SaveChangesAsync();
         }
+
+        public async Task UpdateAsync(Subject subject)
+        {
+            _db.Subjects.Update(subject);
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(Subject subject)
+        {
+            _db.Subjects.Remove(subject);
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task<Subject> GetByIdAsync(int id)
+        {
+            return await _db.Subjects.FindAsync(id);
+        }
     }
 }

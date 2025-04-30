@@ -1,4 +1,4 @@
-﻿using HomeschoolGradeTracker.Application.Subjects;
+﻿using HomeschoolGradeTracker.Application.Services;
 using HomeschoolGradeTracker.Domain.Entities;
 using HomeschoolGradeTracker.Infrastructure.Persistence;
 using HomeschoolGradeTracker.Infrastructure.Repositories;
@@ -64,5 +64,58 @@ public class SubjectService_IntegrationTests
         Assert.Single(subjects);
         Assert.Equal("Geography", subjects.First().Name);
     }
+    [Fact]
+    public async Task UpdateSubject_UpdatesInDb()
+    {
+        // Arrange: setup in-memory DB, repository, and service
+        var dbContext = CreateInMemoryDbContext();
+        var repository = new SubjectRepository(dbContext);
+        var service = new SubjectService(repository);
+
+        // Explicitly clear the context to ensure no data is present before the test
+        dbContext.Subjects.RemoveRange(dbContext.Subjects);
+        await dbContext.SaveChangesAsync();
+
+        // Add a subject to update
+        var subject = new Subject { Name = "Math" };
+        dbContext.Subjects.Add(subject);
+        await dbContext.SaveChangesAsync();
+
+        // Act: update the subject
+        subject.Name = "Advanced Math";
+        await service.UpdateSubjectAsync(subject);
+
+        // Assert: validate the result
+        var updatedSubject = await dbContext.Subjects.FindAsync(subject.Id);
+        Assert.NotNull(updatedSubject);
+        Assert.Equal("Advanced Math", updatedSubject.Name);
+    }
+
+    [Fact]
+    public async Task DeleteSubject_RemovesFromDb()
+    {
+        // Arrange: setup in-memory DB, repository, and service
+        var dbContext = CreateInMemoryDbContext();
+        var repository = new SubjectRepository(dbContext);
+        var service = new SubjectService(repository);
+
+        // Explicitly clear the context to ensure no data is present before the test
+        dbContext.Subjects.RemoveRange(dbContext.Subjects);
+        await dbContext.SaveChangesAsync();
+
+        // Add a subject to delete
+        var subject = new Subject { Name = "Science" };
+        dbContext.Subjects.Add(subject);
+        await dbContext.SaveChangesAsync();
+
+        // Act: delete the subject
+        await service.DeleteSubjectAsync(subject.Id);
+
+        // Assert: validate the result
+        var deletedSubject = await dbContext.Subjects.FindAsync(subject.Id);
+        Assert.Null(deletedSubject);
+    }
+
+    
 }
 
