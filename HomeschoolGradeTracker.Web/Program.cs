@@ -14,8 +14,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // The service and repository are both scoped to the request lifecycle.
 // This allows the web layer to use SubjectService, while SubjectService uses the interface,
 // and EF Core only lives in the Infrastructure layer.
-builder.Services.AddScoped<IRepository, SubjectRepository>();
+builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
 builder.Services.AddScoped<SubjectService>();
+builder.Services.AddScoped<IAssignmentRepository, AssignmentRepository>();
+builder.Services.AddScoped<AssignmentService>();
 
 var app = builder.Build();
 
