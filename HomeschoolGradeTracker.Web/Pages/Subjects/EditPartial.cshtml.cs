@@ -5,14 +5,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HomeschoolGradeTracker.Web.Pages.Subjects
 {
-    public class EditModel(SubjectService subjectService) : PageModel
+    public class EditPartialModel(SubjectService subjectService) : PageModel
     {
         private readonly SubjectService _subjectService = subjectService;
 
         [BindProperty]
         public Subject Subject { get; set; } = new();
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync([FromQuery] int id)
         {
             var subject = await _subjectService.GetSubjectByIdAsync(id);
             if (subject == null)
@@ -32,7 +32,7 @@ namespace HomeschoolGradeTracker.Web.Pages.Subjects
             }
 
             await _subjectService.UpdateSubjectAsync(Subject);
-            return RedirectToPage("/Subjects/Index");
+            return Partial("_SuccessPartial");
         }
     }
 }

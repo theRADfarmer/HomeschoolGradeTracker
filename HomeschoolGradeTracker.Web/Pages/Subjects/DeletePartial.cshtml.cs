@@ -2,18 +2,17 @@ using HomeschoolGradeTracker.Application.Services;
 using HomeschoolGradeTracker.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Reflection.Metadata.Ecma335;
 
 namespace HomeschoolGradeTracker.Web.Pages.Subjects
 {
-    public class DeleteModel(SubjectService subjectService) : PageModel
+    public class DeletePartialModel(SubjectService subjectService) : PageModel
     {
         private readonly SubjectService _subjectService = subjectService;
 
         [BindProperty]
         public Subject Subject { get; set; } = new();
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync([FromQuery] int id)
         {
             var subject = await _subjectService.GetSubjectByIdAsync(id);
             if (subject == null)
@@ -28,7 +27,7 @@ namespace HomeschoolGradeTracker.Web.Pages.Subjects
         public async Task<IActionResult> OnPostAsync()
         {
             await _subjectService.DeleteSubjectAsync(Subject.Id);
-            return RedirectToPage("/Subjects/Index");
+            return Partial("_SuccessPartial");
         }
     }
 }
