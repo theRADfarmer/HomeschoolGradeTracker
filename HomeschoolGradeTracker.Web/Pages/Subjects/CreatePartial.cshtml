@@ -1,0 +1,42 @@
+﻿@page
+@model HomeschoolGradeTracker.Web.Pages.Subjects.CreatePartialModel
+@{
+    Layout = null;
+}
+
+<form hx-post="/Subjects/CreatePartial"
+      hx-target="#modal-content"
+      hx-swap="innerHTML"
+      hx-on:htmx:afterOnLoad="if(event.detail.xhr.response.includes('success')) { window.dispatchEvent(new CustomEvent('close-modal')); htmx.trigger('#subject-table', 'refresh'); }">
+
+    @Html.AntiForgeryToken()
+
+    <div class="modal-header">
+        <h5 class="modal-title">Create new Subject</h5>
+        <button type="button" class="btn-close" aria-label="Close"
+                @@click="open = false; $dispatch('close-modal')">
+        </button>
+    </div>
+    <hr />
+    <div class="mb-3">
+        <label asp-for="Subject.Name" class="form-label"></label>
+        <input asp-for="Subject.Name" class="form-control" />
+        <span asp-validation-for="Subject.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Subject.Description" class="form-label"></label>
+        <textarea asp-for="Subject.Description" class="form-control"></textarea>
+        <span asp-validation-for="Subject.Description" class="text-danger"></span>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success m-1">Save</button>
+        <button type="button" class="btn btn-secondary m-1"
+                @@click="window.dispatchEvent(new CustomEvent('close-modal'))">
+            Cancel
+        </button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

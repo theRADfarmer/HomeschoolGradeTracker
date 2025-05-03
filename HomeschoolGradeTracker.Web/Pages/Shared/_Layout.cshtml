@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Homeschool Grade Tracker</title>
-    <script type="importmap"></script>
+
+    @Html.AntiForgeryToken()
 
     <!-- CSS Styles -->
     <!-- Bootstrap.css - Comment out or remove if using custom styles -->
@@ -12,9 +13,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/HomeschoolGradeTracker.Web.styles.css" asp-append-version="true" />
-
-    <!-- Alpine.js -->
-    <script defer src="~/lib/alpinejs/dist/cdn.min.js" asp-append-version="true"></script>
+    <script type="importmap"></script>
 </head>
 <body>
     <header>
@@ -44,6 +43,31 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+
+            <!-- Static Modal Shell -->
+            <div id="modal"
+                 x-data="{ open: false }"
+                 x-show="open"
+                 @@open-modal.window="open = true"
+                 @@close-modal.window="open = false"
+                 x-transition.opacity
+                 x-cloak
+                 class="bg-transparent position-fixed top-0 start-0 w-100 h-100"
+                 style="display: none; background-color: rgba(0,0,0,0.5); z-index: 1050;"
+                 @@click.self="open = false; $dispatch('close-modal')">
+
+                <div class="modal-dialog modal-dialog-centered bg-white border border-black rounded shadow w-sm-100 w-md-75 w-lg-50 modal-margin modal-animation"
+                     style="z-index: 1051;"
+                     role="document">
+                    <div class="modal-content">
+                        <div class="modal-body m-2" id="modal-content">
+                            <!-- Dynamic content loaded here via htmx -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </main>
     </div>
 
@@ -59,7 +83,9 @@
     <!-- Bootstrap.js -->
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- HTMX -->
-    <script src="~/lib/htmx.org/dist/htmx.min.js"></script>
+    <script src="~/lib/htmx.org/dist/htmx.js"></script>
+    <!-- Alpine.js -->
+    <script defer src="~/lib/alpinejs/dist/cdn.js" asp-append-version="true"></script>
     <!-- Custom js -->
     <script src="~/js/site.js" asp-append-version="true"></script>
 

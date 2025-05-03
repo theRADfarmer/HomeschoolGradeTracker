@@ -46,3 +46,39 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+[x-cloak] {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    .modal-margin {
+        margin: auto 1vw;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .modal-margin {
+        margin: auto 12vw;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-margin {
+        margin: 10vh 25vw auto 25vw;
+    }
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.modal-animation {
+    animation: slide-in 0.7s ease-out;
+}

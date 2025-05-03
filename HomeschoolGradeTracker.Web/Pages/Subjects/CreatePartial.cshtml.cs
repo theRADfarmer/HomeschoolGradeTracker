@@ -5,32 +5,30 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HomeschoolGradeTracker.Web.Pages.Subjects
 {
-    public class CreateModel : PageModel
+    public class CreatePartialModel : PageModel
     {
         private readonly SubjectService _subjectService;
 
-        [BindProperty]
-        public Subject Subject { get; set; } = new();
-
-        public CreateModel(SubjectService subjectService)
+        public CreatePartialModel(SubjectService subjectService)
         {
             _subjectService = subjectService;
         }
 
-        public void OnGet()
-        {
-        }
+        [BindProperty]
+        public Subject Subject { get; set; } = new();
+
+        public IActionResult OnGet() => Page();
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+                return Partial("CreatePartial", this); // Re-render form with errors
 
             await _subjectService.AddSubjectAsync(Subject);
 
-            return RedirectToPage("/Subjects/Index");
+            return Partial("_SuccessPartial");
         }
+
     }
+
 }

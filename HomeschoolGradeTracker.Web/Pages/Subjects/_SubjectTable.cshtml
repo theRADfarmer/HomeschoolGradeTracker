@@ -1,0 +1,45 @@
+﻿@model List<HomeschoolGradeTracker.Domain.Entities.Subject>
+
+<table id="subject-table"
+       class="table table-bordered table-striped"
+       hx-get="/Subjects/SubjectTablePartial"
+       hx-trigger="refresh from:body"
+       hx-target="this"
+       hx-swap="outerHTML">
+    <thead>
+        <tr>
+            <th>Subject Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var subject in Model)
+        {
+            <tr>
+                <td>@subject.Name</td>
+                <td>@subject.Description</td>
+                <td>
+                    <div class="d-flex justify-content-evenly">
+                        <button class="btn btn-primary w-50 m-1"
+                                hx-get="/Subjects/EditPartial?id=@subject.Id"
+                                hx-target="#modal-content"
+                                hx-swap="innerHTML"
+                                @@click="window.dispatchEvent(new CustomEvent('open-modal'))">
+                            Edit
+                        </button>
+
+                        <button class="btn btn-danger w-50 m-1"
+                                hx-get="/Subjects/DeletePartial?id=@subject.Id"
+                                hx-target="#modal-content"
+                                hx-swap="innerHTML"
+                                @@click="window.dispatchEvent(new CustomEvent('open-modal'))">
+                            Delete
+                        </button>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
