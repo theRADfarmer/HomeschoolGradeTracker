@@ -1,0 +1,33 @@
+﻿@page 
+@model HomeschoolGradeTracker.Web.Pages.Subjects.Assignments.IndexModel
+@{
+    ViewData["Title"] = "Assignments";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Assignments
+            </h2>
+        </div>
+        <div x-data class="col-6 text-end">
+            <a class="btn btn-secondary"
+                asp-page="/Subjects/Index">
+                Back to Subjects
+            </a>
+            <button class="btn btn-primary"
+                    hx-get="/Subjects/Assignments/CreatePartial?SubjectId=@Model.AssignmentTableViewModel.SubjectId"
+                    hx-target="#modal-content"
+                    hx-swap="innerHTML"
+                    @@click="window.dispatchEvent(new CustomEvent('open-modal'))">
+                Add Assignment
+            </button>
+
+        </div>
+
+    </div>
+
+    <partial name="_AssignmentTable" for="@Model" />
+
+</div>

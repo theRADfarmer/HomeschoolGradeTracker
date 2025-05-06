@@ -6,8 +6,7 @@
 
 <form hx-post="/Subjects/CreatePartial"
       hx-target="#modal-content"
-      hx-swap="innerHTML"
-      hx-on:htmx:afterOnLoad="if(event.detail.xhr.response.includes('success')) { window.dispatchEvent(new CustomEvent('close-modal')); htmx.trigger('#subject-table', 'refresh'); }">
+      hx-swap="innerHTML">
 
     @Html.AntiForgeryToken()
 

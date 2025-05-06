@@ -6,12 +6,12 @@
 
 namespace HomeschoolGradeTracker.Application.Interfaces
 {
-    public interface IRepository
+    public interface ISubjectRepository
     {
         Task<List<Subject>> GetAllAsync();
         Task AddAsync(Subject subject);
         Task UpdateAsync(Subject subject);
         Task DeleteAsync(Subject subject);
-        Task<Subject> GetByIdAsync(int id);
+        Task<Subject?> GetByIdAsync(int id);
     }
 }

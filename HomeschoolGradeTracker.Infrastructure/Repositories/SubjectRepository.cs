@@ -3,13 +3,13 @@ using HomeschoolGradeTracker.Domain.Entities;
 using HomeschoolGradeTracker.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-// SubjectRepository is the concrete implementation of ISubjectRepository using EF Core.
+// SubjectRepository is the concrete implementation of IRepository using EF Core.
 // It connects to ApplicationDbContext and performs actual database operations.
-// Registered in DI as ISubjectRepository so that the Application layer remains unaware of EF Core.
+// Registered in DI as IRepository so that the Application layer remains unaware of EF Core.
 
 namespace HomeschoolGradeTracker.Infrastructure.Repositories
 {
-    public class SubjectRepository : IRepository
+    public class SubjectRepository : ISubjectRepository
     {
         private readonly ApplicationDbContext _db;
 
@@ -23,10 +23,10 @@ namespace HomeschoolGradeTracker.Infrastructure.Repositories
             return await _db.Subjects.ToListAsync();
         }
 
-        public Task AddAsync(Subject subject)
+        public async Task AddAsync(Subject subject)
         {
             _db.Subjects.Add(subject);
-            return _db.SaveChangesAsync();
+            await _db.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(Subject subject)
@@ -41,7 +41,7 @@ namespace HomeschoolGradeTracker.Infrastructure.Repositories
             await _db.SaveChangesAsync();
         }
 
-        public async Task<Subject> GetByIdAsync(int id)
+        public async Task<Subject?> GetByIdAsync(int id)
         {
             return await _db.Subjects.FindAsync(id);
         }

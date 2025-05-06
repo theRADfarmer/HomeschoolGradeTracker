@@ -9,9 +9,9 @@ namespace HomeschoolGradeTracker.Application.Services
 {
     public class SubjectService
     {
-        private readonly IRepository _subjectRepo;
+        private readonly ISubjectRepository _subjectRepo;
 
-        public SubjectService(IRepository subjectRepo)
+        public SubjectService(ISubjectRepository subjectRepo)
         {
             _subjectRepo = subjectRepo;
         }
@@ -42,7 +42,7 @@ namespace HomeschoolGradeTracker.Application.Services
             await _subjectRepo.DeleteAsync(subject);
         }
 
-        public async Task<Subject> GetSubjectByIdAsync(int id)
+        public async Task<Subject?> GetSubjectByIdAsync(int id)
         {
             return await _subjectRepo.GetByIdAsync(id);
         }
