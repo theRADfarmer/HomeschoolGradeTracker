@@ -13,6 +13,11 @@ document.body.addEventListener('htmx:afterSwap', function (e) {
                 if (subjectTable) {
                     htmx.trigger(subjectTable, 'refresh');
                 }
+
+                const assignmentTable = document.querySelector('#assignment-table');
+                if (assignmentTable) {
+                    htmx.trigger(assignmentTable, 'refresh');
+                }
             }, 0);
         }
     }

@@ -1,0 +1,55 @@
+﻿@page
+@model HomeschoolGradeTracker.Web.Pages.Subjects.Assignments.CreatePartialModel
+@{
+    Layout = null;
+}
+
+<form hx-post="/Subjects/Assignments/CreatePartial"
+      hx-target="#modal-content"
+      hx-swap="innerHTML">
+
+    <input type="hidden" asp-for="SubjectId" />
+
+    @Html.AntiForgeryToken()
+
+    <div class="modal-header">
+        <h5 class="modal-title">Add Assignment</h5>
+        <button type="button" class="btn-close" aria-label="Close"
+                @@click="open = false; $dispatch('close-modal')">
+        </button>
+    </div>
+    <hr />
+    <div class="mb-3">
+        <label asp-for="Assignment.AssignmentName" class="form-label"></label>
+        <input asp-for="Assignment.AssignmentName" class="form-control" />
+        <span asp-validation-for="Assignment.AssignmentName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Assignment.Description" class="form-label"></label>
+        <textarea asp-for="Assignment.Description" class="form-control"></textarea>
+        <span asp-validation-for="Assignment.Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <span>
+            <label asp-for="Assignment.Grade" class="form-label"></label>
+            <input type="number" asp-for="Assignment.Grade" class="form-control" />
+            <span asp-validation-for="Assignment.Grade" class="text-danger"></span>
+        </span>
+        <span>
+            <label asp-for="Assignment.DateCompleted" class="form-label"></label>
+            <input type="date" asp-for="Assignment.DateCompleted" class="form-control" />
+            <span asp-validation-for="Assignment.DateCompleted" class="text-danger"></span>
+        </span>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success m-1">Save</button>
+        <button type="button" class="btn btn-secondary m-1"
+                @@click="window.dispatchEvent(new CustomEvent('close-modal'))">
+            Cancel
+        </button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

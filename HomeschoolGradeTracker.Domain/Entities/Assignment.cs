@@ -16,6 +16,7 @@ namespace HomeschoolGradeTracker.Domain.Entities
 
         [DataType(DataType.Date)]
         [Display(Name = "Completion Date")]
+        [DisplayFormat(DataFormatString = "{MM/dd/yyyy}")]
         public DateTime? DateCompleted { get; set; }
 
         [Range(0, 100)]

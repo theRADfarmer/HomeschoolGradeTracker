@@ -1,49 +1,46 @@
-﻿@model List<HomeschoolGradeTracker.Domain.Entities.Subject>
+﻿@model HomeschoolGradeTracker.Web.Pages.Subjects.Assignments.IndexModel
 
-<table id="subject-table"
+<table id="assignment-table"
        class="table table-bordered table-striped"
-       hx-get="/Subjects/SubjectTablePartial"
+       hx-get="/Subjects/Assignments/AssignmentTablePartial?SubjectId=@Model.AssignmentTableViewModel.SubjectId"
        hx-trigger="refresh from:body"
        hx-target="this"
        hx-swap="outerHTML">
     <thead>
         <tr>
-            <th>Subject Name</th>
+            <th>Assignment Name</th>
             <th>Description</th>
+            <th>Grade</th>
+            <th>Date Completed</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var subject in Model)
+        @foreach (var assignment in Model.AssignmentTableViewModel.Assignments)
         {
             <tr>
-                <td>@subject.Name</td>
-                <td>@subject.Description</td>
+                <td>@assignment.AssignmentName</td>
+                <td>@assignment.Description</td>
+                <td>@assignment.Grade</td>
+                <td>@string.Format("{0:MM/dd/yyyy}", assignment.DateCompleted)</td>
                 <td>
                     <div class="d-flex justify-content-evenly">
-                        <a class="btn btn-primary w-50 m-1"
-                                asp-page="/Subjects/Assignments/Index"
-                                asp-route-subjectId="@subject.Id">
-                            View Assignments
-                        </a>
-
-                        <button class="btn btn-info w-25 m-1"
-                                hx-get="/Subjects/EditPartial?id=@subject.Id"
+                        <button class="btn btn-info w-50 m-1"
+                                hx-get="/Subjects/Assignments/EditPartial?id=@assignment.Id"
                                 hx-target="#modal-content"
                                 hx-swap="innerHTML"
                                 @@click="window.dispatchEvent(new CustomEvent('open-modal'))">
                             Edit
                         </button>
 
-                        <button class="btn btn-danger w-25 m-1"
-                                hx-get="/Subjects/DeletePartial?id=@subject.Id"
+                        <button class="btn btn-danger w-50 m-1"
+                                hx-get="/Subjects/Assignments/DeletePartial?id=@assignment.Id"
                                 hx-target="#modal-content"
                                 hx-swap="innerHTML"
                                 @@click="window.dispatchEvent(new CustomEvent('open-modal'))">
                             Delete
                         </button>
                     </div>
-
                 </td>
             </tr>
         }
